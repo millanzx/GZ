@@ -1,0 +1,444 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка */
+header {
+    background: linear-gradient(135deg, #0057b8 0%, #003d82 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Основной контент */
+main {
+    padding: 2rem 0;
+}
+
+.section {
+    padding: 3rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #0057b8;
+    text-align: center;
+    position: relative;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #ffd700;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+/* Введение */
+#introduction p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+#introduction ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+#introduction li {
+    margin-bottom: 0.5rem;
+}
+
+/* Методология */
+#methodology ul {
+    margin-left: 2rem;
+}
+
+#methodology li {
+    margin-bottom: 0.5rem;
+    list-style: disc;
+}
+
+/* Фильтры */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #0057b8;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: #0057b8;
+}
+
+/* Поиск */
+.search-box {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+#search-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-width: 300px;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #0057b8;
+}
+
+#search-button {
+    padding: 0.75rem 1.5rem;
+    background: #0057b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+#search-button:hover {
+    background: #003d82;
+}
+
+/* Аккордеон каталога */
+.accordion {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    background: #f8f9fa;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #0057b8;
+    transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: #e9ecef;
+}
+
+.accordion-header::after {
+    content: '▼';
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active::after {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.accordion-content.active {
+    padding: 1.5rem;
+    max-height: 1000px;
+}
+
+/* Подкатегории */
+.subcategories {
+    margin-top: 1rem;
+}
+
+.subcategory {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.subcategory h4 {
+    color: #0057b8;
+    margin-bottom: 1rem;
+}
+
+.programs-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.program-card {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.program-card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.program-code {
+    font-weight: bold;
+    color: #0057b8;
+    margin-bottom: 0.5rem;
+}
+
+.program-details {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.program-standards {
+    margin-top: 0.5rem;
+}
+
+.program-standards a {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.program-standards a:hover {
+    text-decoration: underline;
+}
+
+/* Особенности для СВО */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: #0057b8;
+    margin-bottom: 1rem;
+}
+
+/* Нормативная база */
+.legal-accordion {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.legal-item {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.legal-item:last-child {
+    border-bottom: none;
+}
+
+.legal-item h3 {
+    background: #f8f9fa;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: #0057b8;
+    margin: 0;
+    transition: background 0.3s ease;
+}
+
+.legal-item h3:hover {
+    background: #e9ecef;
+}
+
+.legal-content {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.legal-content.active {
+    padding: 1.5rem;
+    max-height: 500px;
+}
+
+.legal-content a {
+    display: inline-block;
+    background: #0057b8;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background 0.3s ease;
+}
+
+.legal-content a:hover {
+    background: #003d82;
+}
+
+/* Футер */
+footer {
+    background: #0057b8;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .filters {
+        flex-direction: column;
+    }
+    
+    .filter-group {
+        min-width: 100%;
+    }
+    
+    .search-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #search-input {
+        min-width: 100%;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.5rem 0;
+    }
+    
+    .section {
+        padding: 2rem 0;
+    }
+    
+    .section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .accordion-header {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .accordion-content.active {
+        padding: 1rem;
+    }
+}
