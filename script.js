@@ -124,6 +124,7 @@ const educationalPrograms = [
 
 // Глобальные переменные для D3
 let svg, simulation, nodes, links, nodeElements, linkElements;
+let activeTooltip = null;
 
 // Инициализация визуализации
 function initVisualization() {
@@ -238,15 +239,28 @@ function updateVisualization(data) {
 
 // Функция отображения деталей программы
 function showProgramDetails(program) {
+    // Добавляем анимацию при смене деталей
     const programInfo = document.getElementById('program-info');
-    programInfo.innerHTML = `
-        <h4>${program.name}</h4>
-        <p><strong>Факультет:</strong> ${capitalizeFirstLetter(program.faculty)}</p>
-        <p><strong>Уровень:</strong> ${capitalizeFirstLetter(program.level)}</p>
-        <p><strong>Продолжительность:</strong> ${program.duration}</p>
-        <p><strong>Форма обучения:</strong> ${program.form}</p>
-        <p><strong>Описание:</strong> ${program.description}</p>
-    `;
+    programInfo.style.opacity = '0';
+    
+    setTimeout(() => {
+        programInfo.innerHTML = `
+            <h4>${program.name}</h4>
+            <p><strong>Факультет:</strong> ${capitalizeFirstLetter(program.faculty)}</p>
+            <p><strong>Уровень:</strong> ${capitalizeFirstLetter(program.level)}</p>
+            <p><strong>Продолжительность:</strong> ${program.duration}</p>
+            <p><strong>Форма обучения:</strong> ${program.form}</p>
+            <p><strong>Описание:</strong> ${program.description}</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: ${program.level === 'магистратура' ? '30%' : '100%'}"></div>
+            </div>
+            <p><strong>Прогресс подготовки:</strong> ${program.level === 'магистратура' ? 'Продвинутый уровень' : 'Базовый уровень'}</p>
+        `;
+        programInfo.style.opacity = '1';
+    }, 300);
+    
+    // Показываем карточку программы
+    document.querySelector('.program-details').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // Функция для капитализации первой буквы
@@ -294,9 +308,6 @@ function filterPrograms() {
         filtered = filtered.filter(program => program.level === levelFilter);
     }
     
-    updateVisualization(filtered);
-}
-
 // Обработчики событий для фильтров
 document.getElementById('faculty-filter').addEventListener('change', filterPrograms);
 document.getElementById('level-filter').addEventListener('change', filterPrograms);
@@ -305,23 +316,104 @@ document.getElementById('level-filter').addEventListener('change', filterProgram
 document.addEventListener('DOMContentLoaded', function() {
     initVisualization();
     
+    // Показываем начальную статистику
+    showStats(educationalPrograms);
+    
     // Добавляем обработчик для изменения размера окна
     window.addEventListener('resize', function() {
         initVisualization();
     });
-});
-
-// Добавляем плавную прокрутку для навигации
-document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: 'smooth'
+    
+    // Добавляем обработчик для навигации по якорям
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 70,
+                behavior: 'smooth'
+            });
         });
     });
+    
+    // Добавляем обработчик для кнопки "Наверх"
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > 300) {
+            if (!document.querySelector('.scroll-to-top')) {
+                const scrollTopBtn = document.createElement('button');
+                scrollTopBtn.className = 'scroll-to-top btn';
+                scrollTopBtn.innerHTML = '↑ Наверх';
+                scrollTopBtn.style.position = 'fixed';
+                scrollTopBtn.style.bottom = '30px';
+                scrollTopBtn.style.right = '30px';
+                scrollTopBtn.style.zIndex = '1000';
+                scrollTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+                document.body.appendChild(scrollTopBtn);
+            }
+        } else {
+            const existingBtn = document.querySelector('.scroll-to-top');
+            if (existingBtn) {
+                existingBtn.remove();
+            }
+        }
+    });
+});
+
+// Добавляем возможность поиска по программам
+function addSearchFunctionality() {
+    const searchContainer = document.createElement('div');
+    searchContainer.className = 'search-container';
+    searchContainer.style.cssText = `
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
+    `;
+    
+    const searchInput = document.createElement('input');
+    searchInput.type = 'text';
+    searchInput.placeholder = 'Поиск программ...';
+    searchInput.style.cssText = `
+        padding: 0.9rem 1.2rem;
+        border: 2px solid #e1e8f0;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 400px;
+        font-size: 1rem;
+        color: #333;
+        transition: all 0.3s ease;
+    `;
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        if (searchTerm.length > 0) {
+            const filtered = educationalPrograms.filter(program => 
+                program.name.toLowerCase().includes(searchTerm) || 
+                program.faculty.toLowerCase().includes(searchTerm) ||
+                program.level.toLowerCase().includes(searchTerm)
+            );
+            updateVisualization(filtered);
+        } else {
+            updateVisualization(educationalPrograms);
+        }
+    });
+    
+    searchContainer.appendChild(searchInput);
+    
+    // Добавляем поле поиска перед фильтрами
+    const filtersContainer = document.querySelector('.filters');
+    if (filtersContainer) {
+        filtersContainer.parentNode.insertBefore(searchContainer, filtersContainer);
+    }
+}
+
+// Инициализируем функциональность поиска
+document.addEventListener('DOMContentLoaded', function() {
+    addSearchFunctionality();
 });
