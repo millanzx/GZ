@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог образовательных программ для участников СВО</title>
+    <link rel="stylesheet" href="styles_svo.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Каталог образовательных программ для участников СВО</h1>
+            <p class="subtitle">Профессиональная ресоциализация через обучение по востребованным профессиям</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="introduction" class="section">
+            <div class="container">
+                <h2>Введение</h2>
+                <p>Цель каталога — профессиональная ресоциализация участников СВО через обучение по востребованным профессиям. Согласно данным РБК, дефицит кадров составляет около 1,5 млн человек, а по прогнозам до 2030 года он может достигнуть 2 млн (Российская газета).</p>
+                <p>Участники СВО имеют особые права при поступлении в образовательные учреждения:</p>
+                <ul>
+                    <li>Отдельная квота при приёме (ст. 68 ФЗ-273)</li>
+                    <li>Бюджетные места в государственных учреждениях (ст. 71 ФЗ-273)</li>
+                    <li>Внеочередное зачисление (ст. 68 и 71 ФЗ-273)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="methodology" class="section">
+            <div class="container">
+                <h2>Методология</h2>
+                <p>Отбор образовательных программ основан на:</p>
+                <ul>
+                    <li>Анализе вакансий и дефицита кадров</li>
+                    <li>Соответствии ФГОС и профессиональным стандартам</li>
+                    <li>Динамичности и обновляемости структуры (5 подкатегорий внутри каждой из 10 макрогрупп)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="catalog" class="section">
+            <div class="container">
+                <h2>Интерактивный каталог</h2>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="education-level">Уровень исходного образования:</label>
+                        <select id="education-level">
+                            <option value="all">Любой</option>
+                            <option value="9">На базе 9 классов</option>
+                            <option value="11">На базе 11 классов</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="education-type">Желаемый уровень обучения:</label>
+                        <select id="education-type">
+                            <option value="all">Любой</option>
+                            <option value="spo">СПО</option>
+                            <option value="vo">ВО</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="form-type">Форма обучения:</label>
+                        <select id="form-type">
+                            <option value="all">Любая</option>
+                            <option value="fulltime">Очная</option>
+                            <option value="parttime">Заочная</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="region">Регион РФ:</label>
+                        <select id="region">
+                            <option value="all">Любой</option>
+                            <option value="moscow">Москва</option>
+                            <option value="spb">Санкт-Петербург</option>
+                            <option value="region">Другой регион</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Поиск по профессиям и специальностям...">
+                    <button id="search-button">Найти</button>
+                </div>
+
+                <div class="accordion" id="catalog-accordion">
+                    <!-- Каталог будет заполнен через JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="svo-features" class="section">
+            <div class="container">
+                <h2>Особенности для участников СВО</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Льготы при поступлении</h3>
+                        <p>Участники СВО имеют право на внеочередное зачисление и отдельную квоту при поступлении</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Бюджетные места</h3>
+                        <p>Гарантированные бюджетные места в государственных образовательных учреждениях</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Продление сроков обучения</h3>
+                        <p>Для инвалидов и лиц с ОВЗ возможно увеличение срока обучения до 1 года</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="legal-base" class="section">
+            <div class="container">
+                <h2>Юридическая и нормативная база</h2>
+                <div class="legal-accordion">
+                    <div class="legal-item">
+                        <h3>ФЗ-273 «Об образовании в Российской Федерации»</h3>
+                        <div class="legal-content">
+                            <p>Основной нормативный правовой акт в сфере образования. Регулирует отношения, возникающие в процессе реализации права граждан на получение образования.</p>
+                            <a href="http://www.consultant.ru/document/cons_doc_LAW_140174/" target="_blank">Читать на сайте КонсультантПлюс</a>
+                        </div>
+                    </div>
+                    <div class="legal-item">
+                        <h3>Приказ Минобрнауки №1061 от 22.08.2019</h3>
+                        <div class="legal-content">
+                            <p>Об утверждении Порядка приема по программам бакалавриата, специалитета и магистратуры.</p>
+                            <a href="https://obrnadzor.gov.ru/ru/activity/documents/fgos/federalnyy_zakon_ot_29_dekabrya_2012_g_n_273_fz_ob_obrazovanii_v_rossiyskoy_federatsii/" target="_blank">Официальный документ</a>
+                        </div>
+                    </div>
+                    <div class="legal-item">
+                        <h3>Приказ Минпросвещения №1199 от 30.08.2021</h3>
+                        <div class="legal-content">
+                            <p>Об утверждении Порядка приема по образовательным программам среднего профессионального образования.</p>
+                            <a href="https://minobrnauki.gov.ru/" target="_blank">Официальный сайт Минпросвещения</a>
+                        </div>
+                    </div>
+                    <div class="legal-item">
+                        <h3>Общероссийский классификатор специальностей и профессий (ОКСО)</h3>
+                        <div class="legal-content">
+                            <p>Классификатор, устанавливающий коды и наименования специальностей и профессий.</p>
+                            <a href="https://www.sokr.ru/okso/" target="_blank">ОКСО на сайте СОКР</a>
+                        </div>
+                    </div>
+                    <div class="legal-item">
+                        <h3>Трудовой кодекс РФ и требования к применению профессиональных стандартов</h3>
+                        <div class="legal-content">
+                            <p>Нормы, регулирующие требования к квалификации работников и применение профессиональных стандартов.</p>
+                            <a href="http://www.consultant.ru/document/cons_doc_LAW_37637/" target="_blank">ТК РФ на сайте КонсультантПлюс</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Каталог образовательных программ для участников СВО | Профессиональная ресоциализация</p>
+        </div>
+    </footer>
+
+    <script src="script_svo.js"></script>
+</body>
+</html>

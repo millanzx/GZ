@@ -1,0 +1,24 @@
+{
+  "name": "svo-education-catalog",
+  "version": "1.0.0",
+  "description": "Интерактивный каталог образовательных программ для участников СВО",
+  "main": "index_svo.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve .",
+    "test": "echo \"Tests not implemented yet\""
+  },
+  "keywords": [
+    "education",
+    "catalog",
+    "SVO",
+    "participants",
+    "resocialization",
+    "professions"
+  ],
+  "author": "Education Catalog Team",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
