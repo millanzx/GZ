@@ -3,93 +3,873 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог образовательных программ - Брендбук РГСУ</title>
+    <title>Каталог образовательных программ для участников СВО</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://www.rggu.ru/upload/iblock/42e/42e6a3a7b6b5a5a5a5a5a5a5a5a5a5a5.png" alt="РГСУ" />
-            <h1>Брендбук РГСУ</h1>
+    <div class="container-fluid">
+        <header class="bg-primary text-white p-4 mb-4">
+            <div class="container">
+                <h1 class="display-4">Каталог образовательных программ для участников СВО</h1>
+                <p class="lead">Профессиональная ресоциализация через обучение по востребованным профессиям</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Введение -->
+            <section id="introduction" class="mb-5">
+                <h2 class="mb-4">Введение</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <p>Цель данного каталога — обеспечить профессиональную ресоциализацию участников специальной военной операции (СВО) через обучение по востребованным профессиям, востребованным на рынке труда.</p>
+                        
+                        <p>Согласно данным <a href="https://www.rbc.ru" target="_blank">РБК</a>, в настоящее время наблюдается дефицит кадров в размере около 1,5 миллионов человек. По прогнозам, опубликованным в <a href="https://rg.ru" target="_blank">Российской газете</a>, к 2030 году этот показатель может достичь 2 миллионов человек.</p>
+                        
+                        <p>Участники СВО имеют особые права при получении образования:</p>
+                        <ul>
+                            <li>Отдельная квота для поступления</li>
+                            <li>Бюджетные места</li>
+                            <li>Внеочередное зачисление (статьи 68 и 71 ФЗ-273)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Методология -->
+            <section id="methodology" class="mb-5">
+                <h2 class="mb-4">Методология</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <p>Отбор образовательных программ основан на:</p>
+                        <ul>
+                            <li>Анализе вакансий и дефицита кадров</li>
+                            <li>Соответствии ФГОС и профессиональным стандартам</li>
+                            <li>Динамичности и обновляемости структуры (5 подкатегорий внутри каждой из 10 макрогрупп)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Фильтры -->
+            <section id="filters" class="mb-5">
+                <h2 class="mb-4">Фильтры и персонализация</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <form id="program-filters">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="education-level" class="form-label">Уровень исходного образования:</label>
+                                    <select class="form-select" id="education-level">
+                                        <option value="">Любой</option>
+                                        <option value="9">9 классов</option>
+                                        <option value="11">11 классов</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="training-level" class="form-label">Желаемый уровень обучения:</label>
+                                    <select class="form-select" id="training-level">
+                                        <option value="">Любой</option>
+                                        <option value="spo">СПО</option>
+                                        <option value="vo">Высшее образование</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="form-of-study" class="form-label">Форма обучения:</label>
+                                    <select class="form-select" id="form-of-study">
+                                        <option value="">Любая</option>
+                                        <option value="full-time">Очная</option>
+                                        <option value="part-time">Заочная</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="region" class="form-label">Регион РФ:</label>
+                                    <select class="form-select" id="region">
+                                        <option value="">Любой</option>
+                                        <option value="moscow">Москва</option>
+                                        <option value="spb">Санкт-Петербург</option>
+                                        <option value="region">Другой регион</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Интерактивный каталог -->
+            <section id="catalog" class="mb-5">
+                <h2 class="mb-4">Интерактивный каталог по 10 макрогруппам</h2>
+                <div class="accordion" id="professions-accordion">
+                    <!-- IT и цифровые технологии -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-it">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-it" aria-expanded="true" aria-controls="collapse-it">
+                                IT и цифровые технологии
+                            </button>
+                        </h3>
+                        <div id="collapse-it" class="accordion-collapse collapse show" aria-labelledby="heading-it" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Разработка программного обеспечения</li>
+                                        <li>Информационная безопасность</li>
+                                        <li>Аналитика данных</li>
+                                        <li>Искусственный интеллект и машинное обучение</li>
+                                        <li>Веб-разработка</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>09.02.07</td>
+                                                    <td>Информационные системы и программирование</td>
+                                                    <td>СПО</td>
+                                                    <td>Техник-программист</td>
+                                                    <td>4 года (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Программист, разработчик ПО</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>09.03.04</td>
+                                                    <td>Программная инженерия</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Инженер-программист, системный аналитик</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Здравоохранение и биотехнологии -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-med">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-med" aria-expanded="false" aria-controls="collapse-med">
+                                Здравоохранение и биотехнологии
+                            </button>
+                        </h3>
+                        <div id="collapse-med" class="accordion-collapse collapse" aria-labelledby="heading-med" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Лечебное дело</li>
+                                        <li>Сестринское дело</li>
+                                        <li>Фармация</li>
+                                        <li>Биотехнологии</li>
+                                        <li>Медицинская кибернетика</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>31.02.02</td>
+                                                    <td>Лечебное дело</td>
+                                                    <td>СПО</td>
+                                                    <td>Фельдшер</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Фельдшер, медицинский брат</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>31.05.01</td>
+                                                    <td>Лечебное дело</td>
+                                                    <td>ВО</td>
+                                                    <td>Врач</td>
+                                                    <td>6 лет</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Врач-терапевт, врач-специалист</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Энергетика и энергомашиностроение -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-energy">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-energy" aria-expanded="false" aria-controls="collapse-energy">
+                                Энергетика и энергомашиностроение
+                            </button>
+                        </h3>
+                        <div id="collapse-energy" class="accordion-collapse collapse" aria-labelledby="heading-energy" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Электроэнергетика</li>
+                                        <li>Теплоэнергетика</li>
+                                        <li>Газотурбинные установки</li>
+                                        <li>Атомная энергетика</li>
+                                        <li>Возобновляемые источники энергии</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>13.02.07</td>
+                                                    <td>Электроснабжение</td>
+                                                    <td>СПО</td>
+                                                    <td>Техник</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Электромонтер, энергетик</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>13.03.02</td>
+                                                    <td>Электроэнергетика и электротехника</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Инженер-электрик, энергетик</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Машиностроение -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-mach">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-mach" aria-expanded="false" aria-controls="collapse-mach">
+                                Машиностроение
+                            </button>
+                        </h3>
+                        <div id="collapse-mach" class="accordion-collapse collapse" aria-labelledby="heading-mach" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Робототехника</li>
+                                        <li>Авиастроение</li>
+                                        <li>Автомашиностроение</li>
+                                        <li>Судостроение</li>
+                                        <li>Космическое машиностроение</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>15.02.08</td>
+                                                    <td>Технология машиностроения</td>
+                                                    <td>СПО</td>
+                                                    <td>Техник</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Технолог, инженер-конструктор</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>15.03.05</td>
+                                                    <td>Конструкторско-технологическое обеспечение машиностроительных производств</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Конструктор, технолог</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Транспорт и логистика -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-trans">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-trans" aria-expanded="false" aria-controls="collapse-trans">
+                                Транспорт и логистика
+                            </button>
+                        </h3>
+                        <div id="collapse-trans" class="accordion-collapse collapse" aria-labelledby="heading-trans" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Автомобильный транспорт</li>
+                                        <li>Железнодорожный транспорт</li>
+                                        <li>Авиационный транспорт</li>
+                                        <li>Морской транспорт</li>
+                                        <li>Логистика</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>23.02.01</td>
+                                                    <td>Техническое обслуживание и ремонт автомобилей</td>
+                                                    <td>СПО</td>
+                                                    <td>Техник</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Автомеханик, техник по обслуживанию</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>23.03.01</td>
+                                                    <td>Технология транспортных процессов</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Логист, транспортный менеджер</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Строительство -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-build">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-build" aria-expanded="false" aria-controls="collapse-build">
+                                Строительство
+                            </button>
+                        </h3>
+                        <div id="collapse-build" class="accordion-collapse collapse" aria-labelledby="heading-build" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Гражданское строительство</li>
+                                        <li>Промышленное строительство</li>
+                                        <li>Дорожное строительство</li>
+                                        <li>Архитектура</li>
+                                        <li>Инженерные изыскания</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>08.02.01</td>
+                                                    <td>Строительство и эксплуатация зданий и сооружений</td>
+                                                    <td>СПО</td>
+                                                    <td>Техник-строитель</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Прораб, строитель</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>08.03.01</td>
+                                                    <td>Строительство</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Инженер-строитель, архитектор</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Сельское хозяйство -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-agro">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-agro" aria-expanded="false" aria-controls="collapse-agro">
+                                Сельское хозяйство
+                            </button>
+                        </h3>
+                        <div id="collapse-agro" class="accordion-collapse collapse" aria-labelledby="heading-agro" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Растениеводство</li>
+                                        <li>Животноводство</li>
+                                        <li>Ветеринария</li>
+                                        <li>Переработка сельскохозяйственной продукции</li>
+                                        <li>Агрономия</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>35.02.07</td>
+                                                    <td>Технология производства и переработки сельскохозяйственной продукции</td>
+                                                    <td>СПО</td>
+                                                    <td>Техник-агроном</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Агроном, специалист по переработке</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>35.03.02</td>
+                                                    <td>Технология производства и переработки сельскохозяйственной продукции</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Агроном, технолог</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Экономика и управление -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-econ">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-econ" aria-expanded="false" aria-controls="collapse-econ">
+                                Экономика и управление
+                            </button>
+                        </h3>
+                        <div id="collapse-econ" class="accordion-collapse collapse" aria-labelledby="heading-econ" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Финансы и кредит</li>
+                                        <li>Бухгалтерский учет</li>
+                                        <li>Менеджмент</li>
+                                        <li>Маркетинг</li>
+                                        <li>Государственное и муниципальное управление</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>38.02.01</td>
+                                                    <td>Экономика и бухгалтерский учет</td>
+                                                    <td>СПО</td>
+                                                    <td>Экономист, бухгалтер</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Бухгалтер, экономист</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>38.03.02</td>
+                                                    <td>Менеджмент</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Менеджер, руководитель</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Право и юриспруденция -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-law">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-law" aria-expanded="false" aria-controls="collapse-law">
+                                Право и юриспруденция
+                            </button>
+                        </h3>
+                        <div id="collapse-law" class="accordion-collapse collapse" aria-labelledby="heading-law" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Правоохранительная деятельность</li>
+                                        <li>Юриспруденция</li>
+                                        <li>Право и организация социального обеспечения</li>
+                                        <li>Корпоративное право</li>
+                                        <li>Международное право</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>40.02.02</td>
+                                                    <td>Правоохранительная деятельность</td>
+                                                    <td>СПО</td>
+                                                    <td>Правовед</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Юрисконсульт, инспектор</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>40.03.01</td>
+                                                    <td>Юриспруденция</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Юрист, адвокат</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Искусство и дизайн -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading-art">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-art" aria-expanded="false" aria-controls="collapse-art">
+                                Искусство и дизайн
+                            </button>
+                        </h3>
+                        <div id="collapse-art" class="accordion-collapse collapse" aria-labelledby="heading-art" data-bs-parent="#professions-accordion">
+                            <div class="accordion-body">
+                                <div class="subcategories">
+                                    <h4>Подкатегории:</h4>
+                                    <ul>
+                                        <li>Графический дизайн</li>
+                                        <li>Веб-дизайн</li>
+                                        <li>Промышленный дизайн</li>
+                                        <li>Медиаискусство</li>
+                                        <li>Дизайн архитектурной среды</li>
+                                    </ul>
+                                    
+                                    <h4 class="mt-4">Образовательные программы:</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Код специальности</th>
+                                                    <th>Название</th>
+                                                    <th>Уровень</th>
+                                                    <th>Квалификация</th>
+                                                    <th>Срок обучения (на базе 9/11 кл.)</th>
+                                                    <th>Профстандарт</th>
+                                                    <th>Примеры должностей</th>
+                                                    <th>ФГОС</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>54.02.01</td>
+                                                    <td>Дизайн</td>
+                                                    <td>СПО</td>
+                                                    <td>Дизайнер</td>
+                                                    <td>3 года 10 месяцев (на базе 9 кл.), 2 года 10 месяцев (на базе 11 кл.)</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Дизайнер, художник</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>54.03.01</td>
+                                                    <td>Дизайн архитектурной среды</td>
+                                                    <td>ВО</td>
+                                                    <td>Бакалавр</td>
+                                                    <td>4 года</td>
+                                                    <td><a href="https://profstandart.rosmintrud.ru/" target="_blank">Профстандарт</a></td>
+                                                    <td>Дизайнер, архитектор</td>
+                                                    <td><a href="https://fgos.ru" target="_blank">ФГОС</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Особенности для участников СВО -->
+            <section id="svo-features" class="mb-5">
+                <h2 class="mb-4">Особенности для участников СВО</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Преимущества при поступлении:</h4>
+                                <ul>
+                                    <li>Отдельная квота для поступления</li>
+                                    <li>Бюджетные места в государственных образовательных учреждениях</li>
+                                    <li>Внеочередное зачисление (статьи 68 и 71 ФЗ-273)</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Особые условия:</h4>
+                                <ul>
+                                    <li>Возможность увеличения срока обучения для инвалидов и лиц с ОВЗ (макс. +1 год)</li>
+                                    <li>Учет специфического опыта участия в СВО при обучении</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Юридическая и нормативная база -->
+            <section id="legal-base" class="mb-5">
+                <h2 class="mb-4">Юридическая и нормативная база</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="accordion" id="legal-accordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="legal-heading-1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-legal-1" aria-expanded="true" aria-controls="collapse-legal-1">
+                                        ФЗ-273 «Об образовании в Российской Федерации»
+                                    </button>
+                                </h3>
+                                <div id="collapse-legal-1" class="accordion-collapse collapse show" aria-labelledby="legal-heading-1" data-bs-parent="#legal-accordion">
+                                    <div class="accordion-body">
+                                        <p>Основной нормативный правовой акт, регулирующий образовательные отношения в Российской Федерации.</p>
+                                        <p>Ссылка: <a href="http://pravo.gov.ru" target="_blank">Официальный текст ФЗ-273</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="legal-heading-2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-legal-2" aria-expanded="false" aria-controls="collapse-legal-2">
+                                        Приказ Минобрнауки и Минпросвещения №1061
+                                    </button>
+                                </h3>
+                                <div id="collapse-legal-2" class="accordion-collapse collapse" aria-labelledby="legal-heading-2" data-bs-parent="#legal-accordion">
+                                    <div class="accordion-body">
+                                        <p>Об утверждении Порядка приема на обучение по образовательным программам высшего образования.</p>
+                                        <p>Ссылка: <a href="http://pravo.gov.ru" target="_blank">Текст приказа №1061</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="legal-heading-3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-legal-3" aria-expanded="false" aria-controls="collapse-legal-3">
+                                        Приказ Минобрнауки и Минпросвещения №1199
+                                    </button>
+                                </h3>
+                                <div id="collapse-legal-3" class="accordion-collapse collapse" aria-labelledby="legal-heading-3" data-bs-parent="#legal-accordion">
+                                    <div class="accordion-body">
+                                        <p>Об утверждении Порядка организации и осуществления образовательной деятельности по образовательным программам среднего профессионального образования.</p>
+                                        <p>Ссылка: <a href="http://pravo.gov.ru" target="_blank">Текст приказа №1199</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="legal-heading-4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-legal-4" aria-expanded="false" aria-controls="collapse-legal-4">
+                                        Приказ Минпросвещения №89
+                                    </button>
+                                </h3>
+                                <div id="collapse-legal-4" class="accordion-collapse collapse" aria-labelledby="legal-heading-4" data-bs-parent="#legal-accordion">
+                                    <div class="accordion-body">
+                                        <p>Об утверждении Порядка приема на обучение по образовательным программам среднего профессионального образования.</p>
+                                        <p>Ссылка: <a href="http://pravo.gov.ru" target="_blank">Текст приказа №89</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="legal-heading-5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-legal-5" aria-expanded="false" aria-controls="collapse-legal-5">
+                                        Приказ Минобрнауки №336
+                                    </button>
+                                </h3>
+                                <div id="collapse-legal-5" class="accordion-collapse collapse" aria-labelledby="legal-heading-5" data-bs-parent="#legal-accordion">
+                                    <div class="accordion-body">
+                                        <p>Об утверждении Порядка организации и осуществления образовательной деятельности по образовательным программам высшего образования.</p>
+                                        <p>Ссылка: <a href="http://pravo.gov.ru" target="_blank">Текст приказа №336</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="legal-heading-6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-legal-6" aria-expanded="false" aria-controls="collapse-legal-6">
+                                        Общероссийский классификатор специальностей образования (ОКСО)
+                                    </button>
+                                </h3>
+                                <div id="collapse-legal-6" class="accordion-collapse collapse" aria-labelledby="legal-heading-6" data-bs-parent="#legal-accordion">
+                                    <div class="accordion-body">
+                                        <p>Классификатор, определяющий коды и наименования специальностей и направлений подготовки.</p>
+                                        <p>Ссылка: <a href="https://classifikators.ru/okso" target="_blank">ОКСО</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="legal-heading-7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-legal-7" aria-expanded="false" aria-controls="collapse-legal-7">
+                                        Трудовой кодекс Российской Федерации и требования к применению профессиональных стандартов
+                                    </button>
+                                </h3>
+                                <div id="collapse-legal-7" class="accordion-collapse collapse" aria-labelledby="legal-heading-7" data-bs-parent="#legal-accordion">
+                                    <div class="accordion-body">
+                                        <p>Требования к применению профессиональных стандартов в трудовой деятельности.</p>
+                                        <p>Ссылка: <a href="http://pravo.gov.ru" target="_blank">Трудовой кодекс РФ</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#catalog">Каталог программ</a></li>
-                <li><a href="#about">О проекте</a></li>
-                <li><a href="#contact">Контакты</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home">
-            <div class="hero">
-                <h2>Интерактивный каталог образовательных программ РГСУ</h2>
-                <p>Откройте для себя разнообразие программ высшего образования в Российском государственном социальном университете</p>
-            </div>
-        </section>
-
-        <section id="catalog">
-            <h2>Каталог образовательных программ</h2>
-            
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>12</h3>
-                    <p>Программ</p>
-                </div>
-                <div class="stat-card">
-                    <h3>7</h3>
-                    <p>Факультетов</p>
-                </div>
-                <div class="stat-card">
-                    <h3>2</h3>
-                    <p>Уровней</p>
-                </div>
-            </div>
-            
-            <div class="filters">
-                <select id="faculty-filter">
-                    <option value="">Все факультеты</option>
-                    <option value="гуманитарный">Гуманитарный факультет</option>
-                    <option value="социальных наук">Факультет социальных наук</option>
-                    <option value="психологии">Факультет психологии</option>
-                    <option value="управления">Факультет управления</option>
-                    <option value="экономики">Экономический факультет</option>
-                    <option value="юриспруденции">Факультет юриспруденции</option>
-                    <option value="журналистики">Факультет журналистики</option>
-                </select>
-                
-                <select id="level-filter">
-                    <option value="">Все уровни</option>
-                    <option value="бакалавриат">Бакалавриат</option>
-                    <option value="магистратура">Магистратура</option>
-                    <option value="специалитет">Специалитет</option>
-                    <option value="аспирантура">Аспирантура</option>
-                </select>
-            </div>
-            
-            <div id="visualization-container">
-                <svg id="program-graph" width="100%" height="600"></svg>
-            </div>
-            
-            <div id="program-details" class="program-details">
-                <h3>Детали программы</h3>
-                <div id="program-info">Выберите программу для просмотра информации</div>
-            </div>
-        </section>
         
-        <section id="about">
-            <h2>О проекте</h2>
-            <p>Этот интерактивный каталог образовательных программ разработан в рамках брендинга Российского государственного социального университета. Каталог позволяет студентам и абитуриентам легко находить и изучать доступные образовательные программы.</p>
-        </section>
-    </main>
+        <footer class="bg-dark text-white p-4 mt-5">
+            <div class="container">
+                <p class="mb-0">&copy; 2023 Каталог образовательных программ для участников СВО. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
 
-    <footer>
-        <p>&copy; 2025 Российский государственный социальный университет</p>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
