@@ -34,27 +34,49 @@ function applyFilters() {
     const programRows = document.querySelectorAll('#professions-accordion tbody tr');
     
     programRows.forEach(row => {
-        const showRow = true; // Пока что показываем все строки, в реальном приложении логика будет сложнее
+        let showRow = true;
         
-        // Простая демонстрация логики фильтрации
-        if (educationLevel && !row.textContent.includes(educationLevel)) {
-            // В реальном приложении здесь будет логика фильтрации по уровню образования
+        // Фильтрация по уровню исходного образования (9/11 кл.)
+        if (educationLevel) {
+            const rowText = row.textContent.toLowerCase();
+            if (educationLevel === '9' && !rowText.includes('на базе 9')) {
+                showRow = false;
+            } else if (educationLevel === '11' && !rowText.includes('на базе 11')) {
+                showRow = false;
+            }
         }
         
-        if (trainingLevel) {
-            const isSPO = row.textContent.toLowerCase().includes('спо');
-            const isVO = row.textContent.toLowerCase().includes('во') || row.textContent.toLowerCase().includes('высшее');
+        // Фильтрация по желаемому уровню обучения (СПО/ВО)
+        if (trainingLevel && showRow) {
+            const rowText = row.textContent.toLowerCase();
+            const isSPO = rowText.includes('спо');
+            const isVO = rowText.includes('во');
             
             if (trainingLevel === 'spo' && !isSPO) {
-                row.style.display = 'none';
+                showRow = false;
             } else if (trainingLevel === 'vo' && !isVO) {
-                row.style.display = 'none';
-            } else {
-                row.style.display = '';
+                showRow = false;
             }
-        } else {
-            row.style.display = '';
         }
+        
+        // Фильтрация по форме обучения
+        if (formOfStudy && showRow) {
+            const formCell = row.cells[5]; // Поле "Форма обучения"
+            if (formCell) {
+                const formText = formCell.textContent.toLowerCase();
+                if (formOfStudy === 'fulltime' && !formText.includes('очная')) {
+                    showRow = false;
+                } else if (formOfStudy === 'parttime' && !formText.includes('заочная')) {
+                    showRow = false;
+                }
+            }
+        }
+        
+        // Фильтрация по региону (в реальной реализации здесь будет более сложная логика)
+        // Пока оставляем как есть, так как в текущих данных нет информации о регионах
+        
+        // Применяем фильтр
+        row.style.display = showRow ? '' : 'none';
     });
 }
 
@@ -112,12 +134,17 @@ function performSearch() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const allPrograms = document.querySelectorAll('#professions-accordion tbody tr');
     
+    // Сначала очищаем все подсветки
+    clearHighlights();
+    
     allPrograms.forEach(row => {
         const rowText = row.textContent.toLowerCase();
-        if (rowText.includes(searchTerm)) {
+        if (searchTerm === '' || rowText.includes(searchTerm)) {
             row.style.display = '';
             // Подсвечиваем найденные элементы
-            highlightSearchTerms(row, searchTerm);
+            if (searchTerm) {
+                highlightSearchTerms(row, searchTerm);
+            }
         } else {
             row.style.display = 'none';
         }
@@ -136,18 +163,82 @@ function performSearch() {
                         toggle: true
                     });
                 }
+                
+                // Показываем весь аккордеон, если в нем есть совпадения
+                item.style.display = '';
             } else {
-                // Скрываем аккордеон, если в нем нет совпадений и идет поиск
-                // (в реальном приложении можно реализовать более сложную логику)
+                // Проверяем, есть ли видимые строки в этом аккордеоне
+                const visibleRows = item.querySelectorAll('tbody tr:not([style*="display: none"])');
+                const totalRows = item.querySelectorAll('tbody tr');
+                
+                // Если в аккордеоне есть видимые строки, показываем его
+                if (visibleRows.length > 0) {
+                    item.style.display = '';
+                }
             }
+        });
+    } else {
+        // Если поиск пустой, показываем все аккордеоны
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            item.style.display = '';
         });
     }
 }
 
 // Подсветка найденных терминов
 function highlightSearchTerms(element, searchTerm) {
-    // В текущей реализации просто оставляем как есть, в реальном приложении
-    // можно добавить подсветку найденных терминов
+    // Сначала удаляем предыдущую подсветку
+    const highlighted = element.querySelectorAll('.highlight');
+    highlighted.forEach(span => {
+        const parent = span.parentNode;
+        parent.replaceChild(document.createTextNode(span.textContent), span);
+        parent.normalize();
+    });
+    
+    // Ищем и подсвечиваем новые совпадения
+    if (searchTerm) {
+        const walker = document.createTreeWalker(
+            element,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode: function(node) {
+                    return node.nodeValue.toLowerCase().includes(searchTerm) ? 
+                           NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+                }
+            }
+        );
+        
+        const nodes = [];
+        let node;
+        while (node = walker.nextNode()) {
+            nodes.push(node);
+        }
+        
+        nodes.forEach(textNode => {
+            const text = textNode.nodeValue;
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            const highlightedText = text.replace(regex, '<span class="highlight">$1</span>');
+            
+            if (highlightedText !== text) {
+                const span = document.createElement('span');
+                span.innerHTML = highlightedText;
+                
+                // Заменяем текстовый узел на новый с подсвеченными терминами
+                textNode.parentNode.replaceChild(span, textNode);
+            }
+        });
+    }
+}
+
+// Функция для очистки подсветки
+function clearHighlights() {
+    const highlighted = document.querySelectorAll('.highlight');
+    highlighted.forEach(span => {
+        const parent = span.parentNode;
+        parent.replaceChild(document.createTextNode(span.textContent), span);
+        parent.normalize();
+    });
 }
 
 // Функция для отображения деталей программы (если будет реализовано)
