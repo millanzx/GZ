@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог образовательных программ - Брендбук РГСУ</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.rggu.ru/upload/iblock/42e/42e6a3a7b6b5a5a5a5a5a5a5a5a5a5a5.png" alt="РГСУ" />
+            <h1>Брендбук РГСУ</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#catalog">Каталог программ</a></li>
+                <li><a href="#about">О проекте</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero">
+                <h2>Интерактивный каталог образовательных программ РГСУ</h2>
+                <p>Откройте для себя разнообразие программ высшего образования в Российском государственном социальном университете</p>
+            </div>
+        </section>
+
+        <section id="catalog">
+            <h2>Каталог образовательных программ</h2>
+            
+            <div class="filters">
+                <select id="faculty-filter">
+                    <option value="">Все факультеты</option>
+                    <option value="гуманитарный">Гуманитарный факультет</option>
+                    <option value="социальных наук">Факультет социальных наук</option>
+                    <option value="психологии">Факультет психологии</option>
+                    <option value="управления">Факультет управления</option>
+                    <option value="экономики">Экономический факультет</option>
+                    <option value="юриспруденции">Факультет юриспруденции</option>
+                    <option value="журналистики">Факультет журналистики</option>
+                </select>
+                
+                <select id="level-filter">
+                    <option value="">Все уровни</option>
+                    <option value="бакалавриат">Бакалавриат</option>
+                    <option value="магистратура">Магистратура</option>
+                    <option value="специалитет">Специалитет</option>
+                    <option value="аспирантура">Аспирантура</option>
+                </select>
+            </div>
+            
+            <div id="visualization-container">
+                <svg id="program-graph" width="100%" height="600"></svg>
+            </div>
+            
+            <div id="program-details" class="program-details">
+                <h3>Детали программы</h3>
+                <div id="program-info">Выберите программу для просмотра информации</div>
+            </div>
+        </section>
+        
+        <section id="about">
+            <h2>О проекте</h2>
+            <p>Этот интерактивный каталог образовательных программ разработан в рамках брендинга Российского государственного социального университета. Каталог позволяет студентам и абитуриентам легко находить и изучать доступные образовательные программы.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Российский государственный социальный университет</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
